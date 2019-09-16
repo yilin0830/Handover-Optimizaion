@@ -1,0 +1,84 @@
+[System]
+Name='Adpative_Hysteresis_Margin'
+Type='mamdani'
+Version=2.0
+NumInputs=3
+NumOutputs=1
+NumRules=36
+AndMethod='min'
+OrMethod='max'
+ImpMethod='min'
+AggMethod='max'
+DefuzzMethod='centroid'
+
+[Input1]
+Name='uVEL'
+Range=[0 80]
+NumMFs=3
+MF1='Slow':'trimf',[0 0 10]
+MF2='Moderate':'trimf',[8 29 50]
+MF3='Fast':'trimf',[45 80 80]
+
+[Input2]
+Name='uRSRP'
+Range=[-160 -20]
+NumMFs=3
+MF1='Weak':'trimf',[-160 -160 -95]
+MF2='Moderate':'trimf',[-100 -86.5 -73]
+MF3='Strong':'trimf',[-80 -20 -20]
+
+[Input3]
+Name='uRSRQ'
+Range=[-60 20]
+NumMFs=4
+MF1='Poor':'trimf',[-60 -60 -18]
+MF2='Good':'trimf',[-22 -17 -12]
+MF3='VeryGood':'trimf',[-14 -10 -6]
+MF4='Excellent':'trimf',[-10 20 20]
+
+[Output1]
+Name='Delta_{HM,d}'
+Range=[1 12]
+NumMFs=4
+MF1='VeryLow':'trimf',[1 1 4.5]
+MF2='Low':'trimf',[3.5 5.25 7]
+MF3='Average':'trimf',[6 7.75 9.5]
+MF4='High':'trimf',[8.5 12 12]
+
+[Rules]
+1 1 1, 1 (1) : 1
+1 1 2, 1 (1) : 1
+1 1 3, 1 (1) : 1
+1 1 4, 1 (1) : 1
+1 2 1, 1 (1) : 1
+1 2 2, 1 (1) : 1
+1 2 3, 1 (1) : 1
+1 2 4, 2 (1) : 1
+1 3 1, 1 (1) : 1
+1 3 2, 1 (1) : 1
+1 3 3, 2 (1) : 1
+1 3 4, 3 (1) : 1
+2 1 1, 1 (1) : 1
+2 1 2, 2 (1) : 1
+2 1 3, 2 (1) : 1
+2 1 4, 3 (1) : 1
+2 2 1, 1 (1) : 1
+2 2 2, 2 (1) : 1
+2 2 3, 2 (1) : 1
+2 2 4, 3 (1) : 1
+2 3 1, 1 (1) : 1
+2 3 2, 2 (1) : 1
+2 3 3, 3 (1) : 1
+2 3 4, 4 (1) : 1
+3 1 1, 2 (1) : 1
+3 1 2, 3 (1) : 1
+3 1 3, 3 (1) : 1
+3 1 4, 3 (1) : 1
+3 2 1, 3 (1) : 1
+3 2 2, 4 (1) : 1
+3 2 3, 4 (1) : 1
+3 2 4, 4 (1) : 1
+3 3 1, 3 (1) : 1
+3 3 2, 4 (1) : 1
+3 3 3, 4 (1) : 1
+3 3 4, 4 (1) : 1
